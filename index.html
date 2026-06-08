@@ -167,6 +167,16 @@
     white-space: nowrap;
   }
   .footer-tab:active, .footer-tab:focus { color: #e67e22; }
+
+  /* 予算表示用の強調スタイル */
+  .budget-highlight {
+    background-color: #fff9f0;
+    padding: 8px;
+    border-radius: 6px;
+    margin-top: 4px;
+    font-size: 11px;
+    color: #666;
+  }
 </style>
 </head>
 <body>
@@ -338,10 +348,17 @@
       <span class="spot-title">概算予算（1人あたり）</span>
     </div>
     <table class="info-table">
+      <tr>
+        <td class="label">交通費<br><span style="font-size:10px;color:#888;">(東京出発)</span></td>
+        <td class="value">
+          約 13,000円
+          <div class="budget-highlight">特急「踊り子」指定席 往復<br>（東京〜伊豆高原：片道約6,500円）</div>
+        </td>
+      </tr>
       <tr><td class="label">宿泊費</td><td class="value">約 15,000円</td></tr>
       <tr><td class="label">食事代</td><td class="value">約 10,000円</td></tr>
-      <tr><td class="label">入園・交通</td><td class="value">約 5,000円</td></tr>
-      <tr><td class="label" style="font-weight:bold;">合計目安</td><td class="value" style="font-weight:bold; color:#d35400;">約 30,000円</td></tr>
+      <tr><td class="label">現地移動・入園</td><td class="value">約 5,000円<br><span style="font-size:10px;color:#888;">(タクシー割勘＋シャボテン公園等)</span></td></tr>
+      <tr><td class="label" style="font-weight:bold; padding-top:12px;">合計目安</td><td class="value" style="font-weight:bold; color:#d35400; padding-top:12px; font-size:16px;">約 43,000円</td></tr>
     </table>
   </div>
 
