@@ -11,7 +11,7 @@
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f7f5f0;
+    background-color: #fdfdfc; /* ベージュ背景 */
     color: #333;
   }
   .mobile-wrapper {
@@ -19,150 +19,133 @@
     margin: 0 auto;
     background-color: #ffffff;
     min-height: 100vh;
-    padding-bottom: 80px;
+    padding-bottom: 80px; /* フッター固定用の余白 */
     box-shadow: 0 0 20px rgba(0,0,0,0.05);
+    position: relative;
   }
-
-  /* 上部ナビゲーションバー */
-  .top-nav {
-    display: flex;
-    overflow-x: auto;
-    background-color: #ffffff;
+  
+  /* メインヘッダー */
+  .main-header {
+    background: #ffffff;
+    padding: 15px 20px 5px;
     border-bottom: 1px solid #eaeaea;
-    padding: 10px 5px;
-    white-space: nowrap;
-    position: sticky;
-    top: 0;
-    z-index: 900;
-    -webkit-overflow-scrolling: touch;
-    scroll-snap-type: x mandatory;
   }
-  .top-nav::-webkit-scrollbar { display: none; }
-  .nav-item {
-    padding: 6px 14px;
+  .main-header h1 { margin: 0; font-size: 18px; font-weight: 800; color: #2c3e50;}
+  .main-header p { margin: 2px 0 0; font-size: 11px; color: #777;}
+  
+  /* セクションバッジ */
+  .day-badge {
+    color: #a87e4f;
     font-size: 13px;
     font-weight: bold;
-    color: #555;
-    background-color: #f5f5f5;
-    border-radius: 15px;
-    margin: 0 5px;
-    text-decoration: none;
-    scroll-snap-align: start;
-  }
-  .nav-item:active { background-color: #e67e22; color: #fff; }
-  
-  .main-header {
-    background: linear-gradient(135deg, #2c3e50, #34495e);
-    color: #fff;
-    padding: 25px 20px;
-    text-align: center;
-  }
-  .main-header h1 { margin: 0; font-size: 20px; font-weight: 800; }
-  .main-header p { margin: 5px 0 0; font-size: 12px; opacity: 0.8; }
-  
-  .day-badge {
-    border-left: 4px solid #e67e22;
-    color: #2c3e50;
-    font-size: 16px;
-    font-weight: bold;
-    margin: 25px 20px 15px;
-    padding-left: 10px;
+    margin: 15px 20px 5px;
   }
 
+  /* アプリ風カード構造 */
   .app-card {
     background: #ffffff;
-    border-radius: 16px;
-    margin: 0 20px 25px;
-    padding: 16px;
-    border: 1px solid #ecebe6;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.03);
-    scroll-margin-top: 60px; /* スクロール時の余白 */
+    border-radius: 12px;
+    margin: 0 15px 20px;
+    padding: 15px;
+    border: 1px solid #eaeaea;
+    scroll-margin-top: 15px; /* スクロール時の余白 */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.02);
   }
 
   .spot-header {
     display: flex;
-    align-items: baseline;
+    align-items: center;
     margin-bottom: 12px;
-  }
-  .spot-time {
-    font-size: 16px;
-    font-weight: 800;
-    color: #e67e22;
-    margin-right: 10px;
-  }
-  .spot-title {
-    font-size: 18px;
-    font-weight: bold;
     color: #2c3e50;
   }
+  .spot-icon {
+    font-size: 16px;
+    margin-right: 6px;
+  }
+  .spot-time {
+    font-size: 14px;
+    font-weight: 800;
+    margin-right: 8px;
+  }
+  .spot-title {
+    font-size: 16px;
+    font-weight: bold;
+  }
 
-  /* 本当に動くスワイプカルーセル */
+  /* 写真カルーセル */
+  .carousel-outer {
+    margin-bottom: 12px;
+  }
   .carousel-wrapper {
     display: flex;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
-    gap: 10px;
-    padding-bottom: 10px;
+    gap: 8px;
     -webkit-overflow-scrolling: touch;
   }
-  .carousel-wrapper::-webkit-scrollbar { height: 4px; }
-  .carousel-wrapper::-webkit-scrollbar-thumb { background: #ccc; border-radius: 4px; }
+  .carousel-wrapper::-webkit-scrollbar { display: none; }
   
   .carousel-item {
-    flex: 0 0 92%;
+    flex: 0 0 calc(100% - 16px);
     scroll-snap-align: center;
     position: relative;
     height: 180px;
-    border-radius: 12px;
+    border-radius: 8px;
     overflow: hidden;
   }
+  .carousel-item.zebra { flex: 0 0 calc(100% - 20%); } /* シマウマのような画像（右側が少し見えている） */
+
   .carousel-item svg { width: 100%; height: 100%; object-fit: cover; }
-  .carousel-hint {
+  .carousel-label {
     position: absolute;
-    bottom: 5px;
-    right: 10px;
-    background: rgba(0,0,0,0.5);
+    bottom: 8px;
+    left: 10px;
+    background: rgba(0,0,0,0.4);
     color: #fff;
-    font-size: 10px;
-    padding: 2px 8px;
-    border-radius: 10px;
+    font-size: 11px;
+    padding: 3px 8px;
+    border-radius: 12px;
   }
 
+  .swipe-hint {
+    text-align: center;
+    font-size: 10px;
+    color: #888;
+    margin-top: 5px;
+  }
+
+  /* 情報グリッドテーブル */
   .info-table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 5px;
   }
-  .info-table tr { border-bottom: 1px solid #f7f6f3; }
-  .info-table tr:last-child { border-bottom: none; }
-  .info-table td { padding: 10px 4px; font-size: 13px; vertical-align: top; }
-  .info-table td.label { width: 75px; color: #888; font-weight: 500; }
+  .info-table td { padding: 8px 4px; font-size: 12px; vertical-align: top; }
+  .info-table td.label { width: 70px; color: #888; font-weight: normal; }
   .info-table td.value { color: #333; line-height: 1.5; }
   .info-table a { color: #4285F4; text-decoration: none; font-weight: bold; }
 
-  /* 夕食候補カードとマップボタン */
+  /* 夕食候補 */
   .dinner-choice {
-    background-color: #fbfbfa;
-    border: 1px solid #f0efeb;
-    border-radius: 10px;
-    padding: 12px;
-    margin-bottom: 12px;
+    border-top: 1px solid #f2f2f2;
+    padding: 10px 0;
   }
-  .dinner-choice-title { font-size: 14px; font-weight: bold; color: #d35400; margin-bottom: 4px; }
-  .dinner-choice-desc { font-size: 12px; color: #666; line-height: 1.4; margin-bottom: 8px;}
+  .dinner-choice:first-child { border-top: none; }
+  .dinner-choice-title { font-size: 13px; font-weight: bold; color: #2c3e50; margin-bottom: 3px; }
+  .dinner-choice-desc { font-size: 11px; color: #666; line-height: 1.4; margin-bottom: 5px;}
   .map-btn-small {
     display: inline-block;
     background-color: #eef3f9;
     color: #4285F4;
-    padding: 6px 12px;
-    border-radius: 15px;
-    font-size: 11px;
+    padding: 5px 10px;
+    border-radius: 12px;
+    font-size: 10px;
     font-weight: bold;
     text-decoration: none;
     border: 1px solid #d4e1f4;
   }
 
-  /* アプリ風固定フッター（リンク化） */
+  /* 固定フッター（リンク化・3つ） */
   .app-footer {
     position: fixed;
     bottom: 0;
@@ -170,14 +153,13 @@
     transform: translateX(-50%);
     width: 100%;
     max-width: 480px;
-    height: 65px;
-    background-color: rgba(255, 255, 255, 0.96);
+    height: 60px;
+    background-color: #ffffff;
     border-top: 1px solid #e5e5e5;
     display: flex;
     justify-content: space-around;
     align-items: center;
     z-index: 1000;
-    backdrop-filter: blur(10px);
   }
   .footer-tab {
     display: flex;
@@ -185,9 +167,9 @@
     align-items: center;
     color: #777;
     text-decoration: none;
-    width: 25%;
+    width: 33.3%;
   }
-  .footer-tab-icon { font-size: 20px; margin-bottom: 2px; }
+  .footer-tab-icon { font-size: 18px; margin-bottom: 3px; }
   .footer-tab-text { font-size: 10px; font-weight: bold; }
   .footer-tab:active, .footer-tab:focus { color: #e67e22; }
 </style>
@@ -195,18 +177,8 @@
 <body>
 
 <div class="mobile-wrapper" id="top">
-  <div class="nav-scroll-container">
-    <div class="top-nav">
-      <a href="#spot1" class="nav-item">11:00 一碧湖</a>
-      <a href="#spot2" class="nav-item">14:00 城ヶ崎</a>
-      <a href="#spot3" class="nav-item">16:00 ヴィラ</a>
-      <a href="#dinner" class="nav-item">夕食候補</a>
-      <a href="#spot5" class="nav-item">2日目 シャボテン</a>
-    </div>
-  </div>
-
   <div class="main-header">
-    <h1>🏡 伊豆高原・贅沢ヴィラ旅</h1>
+    <h1>🏡 伊豆高原・贅沢ヴィラ旅 しおり</h1>
     <p>絶景とカピバラに癒やされる 1泊2日</p>
   </div>
 
@@ -214,23 +186,29 @@
 
   <div class="app-card" id="spot1">
     <div class="spot-header">
+      <span class="spot-icon">🦢</span>
       <span class="spot-time">11:00</span>
-      <span class="spot-title">一碧湖（いっぺきこ）</span>
+      <span class="spot-title">一碧湖 到着</span>
     </div>
     
-    <div class="carousel-wrapper">
-      <div class="carousel-item">
-        <svg viewBox="0 0 400 180"><rect width="100%" height="100%" fill="#11998e"/><text x="50%" y="50%" font-size="20" fill="#fff" text-anchor="middle">LAKE VIEW 1</text></svg>
-        <div class="carousel-hint">1/2 スワイプ →</div>
+    <div class="carousel-outer">
+      <div class="carousel-wrapper">
+        <div class="carousel-item">
+          <svg viewBox="0 0 400 180"><rect width="100%" height="100%" fill="#a2d5c6"/><circle cx="200" cy="90" r="40" fill="#ffffff" opacity="0.5"/><text x="50%" y="50%" font-size="20" fill="#fff" text-anchor="middle">LAKE VIEW 1</text></svg>
+          <div class="carousel-label">一碧湖</div>
+        </div>
+        <div class="carousel-item zebra">
+          <svg viewBox="0 0 320 180"><rect width="100%" height="100%" fill="#dddddd"/><text x="50%" y="50%" font-size="18" fill="#aaa" text-anchor="middle">SCENERY</text></svg>
+          <div class="carousel-label">周辺散策</div>
+        </div>
       </div>
-      <div class="carousel-item">
-        <svg viewBox="0 0 400 180"><rect width="100%" height="100%" fill="#38ef7d"/><text x="50%" y="50%" font-size="20" fill="#fff" text-anchor="middle">LAKE VIEW 2</text></svg>
-        <div class="carousel-hint">2/2</div>
-      </div>
+      <div class="swipe-hint">← スワイプ/PCは左右矢印ボタン or キーで写真切替 →</div>
     </div>
 
     <table class="info-table">
-      <tr><td class="label">概要</td><td class="value">「伊豆の瞳」と呼ばれる美しい湖。到着したらまずは緑豊かな遊歩道を散策。</td></tr>
+      <tr><td class="label">住所</td><td class="value">静岡県伊東市一碧湖</td></tr>
+      <tr><td class="label">営業</td><td class="value">24時間（周辺施設は異なる）</td></tr>
+      <tr><td class="label">概要</td><td class="value">「伊豆の瞳」と呼ばれる美しい湖。まずは緑豊かな遊歩道を散策。</td></tr>
       <tr id="lunch"><td class="label">お昼</td><td class="value">周辺のおしゃれな湖畔カフェでランチ。（※車で次の目的地へ約20分）</td></tr>
       <tr><td class="label">マップ</td><td class="value"><a href="https://www.google.com/maps/search/?api=1&query=一碧湖" target="_blank">Googleマップで開く ↗</a></td></tr>
     </table>
@@ -238,22 +216,28 @@
 
   <div class="app-card" id="spot2">
     <div class="spot-header">
+      <span class="spot-icon">🌊</span>
       <span class="spot-time">14:00</span>
-      <span class="spot-title">城ヶ崎海岸（門脇吊り橋）</span>
+      <span class="spot-title">城ヶ崎海岸 到着</span>
     </div>
     
-    <div class="carousel-wrapper">
-      <div class="carousel-item">
-        <svg viewBox="0 0 400 180"><rect width="100%" height="100%" fill="#1f4068"/><text x="50%" y="50%" font-size="20" fill="#fff" text-anchor="middle">OCEAN CLIFF 1</text></svg>
-        <div class="carousel-hint">1/2 スワイプ →</div>
+    <div class="carousel-outer">
+      <div class="carousel-wrapper">
+        <div class="carousel-item">
+          <svg viewBox="0 0 400 180"><rect width="100%" height="100%" fill="#778899"/><text x="50%" y="50%" font-size="20" fill="#fff" text-anchor="middle">CLIFF VIEW</text></svg>
+          <div class="carousel-label">断崖絶壁</div>
+        </div>
+        <div class="carousel-item zebra">
+          <svg viewBox="0 0 320 180"><rect width="100%" height="100%" fill="#cccccc"/><text x="50%" y="50%" font-size="18" fill="#aaa" text-anchor="middle">BRIDGE</text></svg>
+          <div class="carousel-label">門脇吊り橋</div>
+        </div>
       </div>
-      <div class="carousel-item">
-        <svg viewBox="0 0 400 180"><rect width="100%" height="100%" fill="#162447"/><text x="50%" y="50%" font-size="20" fill="#fff" text-anchor="middle">SUSPENSION BRIDGE</text></svg>
-        <div class="carousel-hint">2/2</div>
-      </div>
+      <div class="swipe-hint">← スワイプ/PCは左右矢印ボタン or キーで写真切替 →</div>
     </div>
 
     <table class="info-table">
+      <tr><td class="label">住所</td><td class="value">静岡県伊東市富戸</td></tr>
+      <tr><td class="label">営業</td><td class="value">24時間</td></tr>
       <tr><td class="label">概要</td><td class="value">スリル満点な門脇吊り橋からの景色は圧巻！絶景をバックに記念撮影。（※車でホテルへ約15分）</td></tr>
       <tr><td class="label">マップ</td><td class="value"><a href="https://www.google.com/maps/search/?api=1&query=城ヶ崎海岸+門脇吊り橋" target="_blank">Googleマップで開く ↗</a></td></tr>
     </table>
@@ -261,98 +245,108 @@
 
   <div class="app-card" id="spot3">
     <div class="spot-header">
+      <span class="spot-icon">🏨</span>
       <span class="spot-time">16:00</span>
-      <span class="spot-title">ヴィラージュ伊豆高原</span>
+      <span class="spot-title">ヴィラージュ伊豆高原 到着</span>
     </div>
 
-    <div class="carousel-wrapper">
-      <div class="carousel-item">
-        <svg viewBox="0 0 400 180"><rect width="100%" height="100%" fill="#f8a5c2"/><text x="50%" y="50%" font-size="20" fill="#fff" text-anchor="middle">ROOM VIEW</text></svg>
-        <div class="carousel-hint">1/2 スワイプ →</div>
+    <div class="carousel-outer">
+      <div class="carousel-wrapper">
+        <div class="carousel-item">
+          <svg viewBox="0 0 400 180"><rect width="100%" height="100%" fill="#e0bfb8"/><text x="50%" y="50%" font-size="20" fill="#fff" text-anchor="middle">VILLA ROOM</text></svg>
+          <div class="carousel-label">スイート</div>
+        </div>
+        <div class="carousel-item zebra">
+          <svg viewBox="0 0 320 180"><rect width="100%" height="100%" fill="#f7f3e8"/><text x="50%" y="50%" font-size="18" fill="#aaa" text-anchor="middle">SPA</text></svg>
+          <div class="carousel-label">温泉</div>
+        </div>
       </div>
-      <div class="carousel-item">
-        <svg viewBox="0 0 400 180"><rect width="100%" height="100%" fill="#f7d794"/><text x="50%" y="50%" font-size="20" fill="#fff" text-anchor="middle">ONSEN</text></svg>
-        <div class="carousel-hint">2/2</div>
-      </div>
+      <div class="swipe-hint">← スワイプ/PCは左右矢印ボタン or キーで写真切替 →</div>
     </div>
 
     <table class="info-table">
-      <tr><td class="label">過ごし方</td><td class="value">全室80㎡以上のスイート。チェックインして荷物を置き、夕食まで自慢の温泉でリフレッシュ！</td></tr>
+      <tr><td class="label">住所</td><td class="value">静岡県伊東市八幡野1317-10</td></tr>
+      <tr><td class="label">電話</td><td class="value"><a href="tel:0557544848">0557-54-4848</a></td></tr>
+      <tr><td class="label">過ごし方</td><td class="value">チェックインして夕食まで、自慢の温泉でリフレッシュ！</td></tr>
       <tr><td class="label">マップ</td><td class="value"><a href="https://www.google.com/maps/search/?api=1&query=ヴィラージュ伊豆高原" target="_blank">Googleマップで開く ↗</a></td></tr>
     </table>
   </div>
 
   <div class="app-card" id="dinner">
     <div class="spot-header">
+      <span class="spot-icon">🍽️</span>
       <span class="spot-time">18:00</span>
       <span class="spot-title">夕食スポット（候補4選）</span>
     </div>
-    <p style="font-size: 13px; color: #666; margin: 0 0 15px 0;">ホテルからタクシーまたは車で10〜15分圏内。気分で選べる人気店！</p>
-    
-    <div class="dinner-choice">
-      <div class="dinner-choice-title">🍗 和むら 総本店</div>
-      <div class="dinner-choice-desc">圧巻の「特大エビフライ」やこだわりトンカツが名物。</div>
-      <a href="https://www.google.com/maps/search/?api=1&query=和むら+総本店+伊豆" target="_blank" class="map-btn-small">📍 マップ・経路を見る</a>
-    </div>
-    <div class="dinner-choice">
-      <div class="dinner-choice-title">🍺 伊豆高原ビール本店レストラン</div>
-      <div class="dinner-choice-desc">山盛りの「漁師めし（海鮮丼）」が名物！わいわい楽しむならここ。</div>
-      <a href="https://www.google.com/maps/search/?api=1&query=伊豆高原ビール本店レストラン" target="_blank" class="map-btn-small">📍 マップ・経路を見る</a>
-    </div>
-    <div class="dinner-choice">
-      <div class="dinner-choice-title">🍣 本家鮪屋 伊豆高原本店</div>
-      <div class="dinner-choice-desc">極上の『地金目鯛の炙り丼』や特選マグロなど、上質な海の幸を堪能。</div>
-      <a href="https://www.google.com/maps/search/?api=1&query=本家鮪屋+伊豆高原本店" target="_blank" class="map-btn-small">📍 マップ・経路を見る</a>
-    </div>
-    <div class="dinner-choice">
-      <div class="dinner-choice-title">🇫🇷 ミクニ伊豆高原</div>
-      <div class="dinner-choice-desc">隈研吾氏デザインの絶景空間でいただく、伊豆素材の贅沢フレンチ。</div>
-      <a href="https://www.google.com/maps/search/?api=1&query=ミクニ伊豆高原" target="_blank" class="map-btn-small">📍 マップ・経路を見る</a>
+    <div class="dinner-choices-list">
+      <div class="dinner-choice">
+        <div class="dinner-choice-title">和むら 総本店</div>
+        <div class="dinner-choice-desc">圧巻の「特大エビフライ」やこだわりトンカツ。</div>
+        <a href="https://www.google.com/maps/search/?api=1&query=和むら+総本店+伊豆" target="_blank" class="map-btn-small">📍 マップ・経路</a>
+      </div>
+      <div class="dinner-choice">
+        <div class="dinner-choice-title">伊豆高原ビール本店レストラン</div>
+        <div class="dinner-choice-desc">山盛りの「漁師めし」！わいわい楽しむならここ。</div>
+        <a href="https://www.google.com/maps/search/?api=1&query=伊豆高原ビール本店レストラン" target="_blank" class="map-btn-small">📍 マップ・経路</a>
+      </div>
+      <div class="dinner-choice">
+        <div class="dinner-choice-title">本家鮪屋 伊豆高原本店</div>
+        <div class="dinner-choice-desc">極上の『地金目鯛の炙り丼』など海の幸を堪能。</div>
+        <a href="https://www.google.com/maps/search/?api=1&query=本家鮪屋+伊豆高原本店" target="_blank" class="map-btn-small">📍 マップ・経路</a>
+      </div>
+      <div class="dinner-choice">
+        <div class="dinner-choice-title">ミクニ伊豆高原</div>
+        <div class="dinner-choice-desc">隈研吾氏デザインの絶景空間でいただく贅沢フレンチ。</div>
+        <a href="https://www.google.com/maps/search/?api=1&query=ミクニ伊豆高原" target="_blank" class="map-btn-small">📍 マップ・経路</a>
+      </div>
     </div>
   </div>
 
-  <div class="day-badge" id="spot5">2日目：動物エンタメとランチ</div>
+  <div class="day-badge">2日目：動物エンタメとランチ</div>
 
-  <div class="app-card">
+  <div class="app-card" id="spot5">
     <div class="spot-header">
+      <span class="spot-icon">🦙</span>
       <span class="spot-time">09:30</span>
-      <span class="spot-title">伊豆シャボテン動物公園</span>
+      <span class="spot-title">伊豆シャボテン動物公園 到着</span>
     </div>
     
-    <div class="carousel-wrapper">
-      <div class="carousel-item">
-        <svg viewBox="0 0 400 180"><rect width="100%" height="100%" fill="#f12711"/><text x="50%" y="50%" font-size="20" fill="#fff" text-anchor="middle">CAPYBARA</text></svg>
-        <div class="carousel-hint">1/2 スワイプ →</div>
+    <div class="carousel-outer">
+      <div class="carousel-wrapper">
+        <div class="carousel-item">
+          <svg viewBox="0 0 400 180"><rect width="100%" height="100%" fill="#f19e93"/><text x="50%" y="50%" font-size="20" fill="#fff" text-anchor="middle">CAPYBARA</text></svg>
+          <div class="carousel-label">カピバラ</div>
+        </div>
+        <div class="carousel-item zebra">
+          <svg viewBox="0 0 320 180"><rect width="100%" height="100%" fill="#eeeeee"/><text x="50%" y="50%" font-size="18" fill="#aaa" text-anchor="middle">CACTUS</text></svg>
+          <div class="carousel-label">サボテン</div>
+        </div>
       </div>
-      <div class="carousel-item">
-        <svg viewBox="0 0 400 180"><rect width="100%" height="100%" fill="#f5af19"/><text x="50%" y="50%" font-size="20" fill="#fff" text-anchor="middle">CACTUS</text></svg>
-        <div class="carousel-hint">2/2</div>
-      </div>
+      <div class="swipe-hint">← スワイプ/PCは左右矢印ボタン or キーで写真切替 →</div>
     </div>
 
     <table class="info-table">
-      <tr><td class="label">概要</td><td class="value">放し飼いのカピバラたちに直接エサやりができる体験型動物園。</td></tr>
-      <tr><td class="label">昼食場所</td><td class="value"><b>森のどうぶつレストラン ギボン亭</b><br>巨大カピバラぬいぐるみと相席！アニマルメニューを楽しめます。</td></tr>
-      <tr><td class="label" id="emergency">マップ</td><td class="value"><a href="https://www.google.com/maps/search/?api=1&query=伊豆シャボテン動物公園" target="_blank">Googleマップで開く ↗</a></td></tr>
+      <tr><td class="label">住所</td><td class="value">静岡県伊東市富戸1317-13</td></tr>
+      <tr><td class="label">電話</td><td class="value"><a href="tel:0557511111">0557-51-1111</a></td></tr>
+      <tr><td class="label">営業</td><td class="value">9:00〜17:00（最終入園 16:00）※時期により変動</td></tr>
+      <tr><td class="label">概要</td><td class="value">カピバラやリスザルたちに直接エサやりができる体験型動物園。</td></tr>
+      <tr><td class="label">昼食場所</td><td class="value"><b>ギボン亭</b><br>カピバラぬいぐるみと相席！可愛いメニュー。</td></tr>
+      <tr><td class="label">マップ</td><td class="value"><a href="https://www.google.com/maps/search/?api=1&query=伊豆シャボテン動物公園" target="_blank">Googleマップで開く ↗</a></td></tr>
     </table>
   </div>
 
   <div class="app-footer">
     <a href="#schedule" class="footer-tab">
       <span class="footer-tab-icon">🗺️</span>
-      <span class="footer-tab-text">行程</span>
+      <span class="footer-tab-text">1日目行程</span>
     </a>
     <a href="#lunch" class="footer-tab">
       <span class="footer-tab-icon">🍔</span>
       <span class="footer-tab-text">お昼</span>
     </a>
-    <a href="#dinner" class="footer-tab">
-      <span class="footer-tab-icon">🍖</span>
-      <span class="footer-tab-text">夕食候補</span>
-    </a>
-    <a href="#emergency" class="footer-tab">
-      <span class="footer-tab-icon">📞</span>
-      <span class="footer-tab-text">緊急連絡(地図)</span>
+    <a href="#spot5" class="footer-tab">
+      <span class="footer-tab-icon">🦙</span>
+      <span class="footer-tab-text">2日目(動物園)</span>
     </a>
   </div>
 
